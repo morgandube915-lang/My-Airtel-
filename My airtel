@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Airtel App Demo</title>
+<style>
+body{font-family:sans-serif;background:#e40000;margin:0;padding:15px}
+.box{background:white;padding:22px;border-radius:16px;max-width:380px;margin:20px auto;text-align:center}
+h2{color:#e40000;margin:0}
+input,textarea{width:100%;padding:13px;margin:8px 0;border-radius:10px;border:1px solid #ccc;box-sizing:border-box;font-size:16px}
+button{width:100%;padding:13px;background:#e40000;color:white;border:none;border-radius:10px;font-weight:bold;font-size:16px;margin-top:5px}
+#msg{margin-top:12px;font-weight:bold;color:green}
+small{color:#777}
+.chat{margin-top:18px;border-top:1px solid #eee;padding-top:15px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>My Airtel App</h2>
+<p>Login with phone and PIN</p>
+<p><small>Educational demo by morgandube915-lang - Not Airtel</small></p>
+<input id="phone" type="tel" placeholder="Phone 0700...">
+<input id="pin" type="password" placeholder="Location PIN">
+<button onclick="login()">Login</button>
+<p id="msg"></p>
+
+<div id="chatBox" class="chat">
+<p><b>Talk to me:</b></p>
+<a id="waLink" href="https://wa.me/256791480841" target="_blank" style="background:#25D366;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;display:inline-block;width:85%">💬 Chat on WhatsApp</a>
+<br><br>
+<textarea id="userMsg" placeholder="Type your question..."></textarea>
+<button onclick="sendMsg()" style="background:#111">Send Message</button>
+</div>
+</div>
+
+<script>
+function login(){
+ let phone=document.getElementById('phone').value;
+ let pin=document.getElementById('pin').value;
+ let msg=document.getElementById('msg');
+ if(phone.length<10){msg.style.color='red';msg.innerText='Enter valid phone';return;}
+ if(pin.length<1){msg.style.color='red';msg.innerText='Enter PIN';return;}
+ msg.style.color='green';
+ msg.innerText='Welcome to My Airtel App, '+phone+'!';
+ document.getElementById('chatBox').style.display='block';
+ document.getElementById('waLink').href="https://wa.me/256791480841?text=Hi Morgan, I tested your My-Airtel demo. My number is "+phone+" . "+document.getElementById('userMsg').value;
+}
+function sendMsg(){
+ let m=document.getElementById('userMsg').value;
+ if(m==""){alert("Write message first");return;}
+ window.open("https://wa.me/256791480841?text=Hi Morgan, from your app: "+encodeURIComponent(m)," _blank");
+}
+</script>
+</body>
+</html>
